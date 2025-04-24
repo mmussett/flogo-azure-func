@@ -75,6 +75,9 @@ func new --name <<your-azure-function-name>> --template "HTTP trigger"
    
 ### function.json
 
+> **Note** Check and set "methods" array values are correct for you API.
+> **Note** Check and set "route" matches your resource path set on your Flogo Trigger.
+
 ```
 {
   "bindings": [
@@ -163,7 +166,9 @@ COPY . "/home/site/wwwroot"
 
 ### start.sh
 
-Create the start.sh file making sure to chmod +x
+Add new file named start.sh file. Make sure to chmod +x start.sh
+
+> **Note** Change the executable name to match your Flogo application binary.
 
 ```
 #!/usr/bin/env sh
