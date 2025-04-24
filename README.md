@@ -64,9 +64,11 @@ Make sure your local runtime is linux x86_64
 
 Run the following in your VSC terminal...
 
+[!NOTE] Remember to replace <<<<your-azure-function-name>>
+
 ```
 func init --worker-runtime custom --docker
-func new --name flogo-hello-world-func --template "HTTP trigger"
+func new --name <<your-azure-function-name>> --template "HTTP trigger"
 ```
 
 2. Modify the following files...
@@ -174,10 +176,12 @@ PORT=${FUNCTIONS_CUSTOMHANDLER_PORT} ./flogo-hello-world
 
 Run the following in your VSC terminal...
 
+[!NOTE] Remember to replace <<your-azure-function-app-name>>,  <<region>>, <<your-resource-group>>, and <<your-storage-account>>
+
 
 ```
 az login
 az functionapp create --resource-group <<your-resource-group>> --os-type Linux --consumption-plan-location <<region>> --runtime custom --functions-version 4 --name <<your-azure-function-app-name>> --storage-account <<your-storage-account>>
 zip -r app.zip  . -x "./.devcontainer/*"
-az functionapp deployment source config-zip --resource-group  <<your-resource-group>> --name<<your-azure-function-app-name>> --src app.zip
+az functionapp deployment source config-zip --resource-group  <<your-resource-group>> --name <<your-azure-function-app-name>> --src app.zip
 ```
