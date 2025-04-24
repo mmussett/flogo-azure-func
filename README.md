@@ -64,7 +64,7 @@ Make sure your local runtime is linux x86_64
 
 Run the following in your VSC terminal...
 
-> **Note** Remember to replace **<<your-azure-function-name>>** value.
+> **Note** Remember to replace **<<<your-azure-function-name>>>** value.
 
 ```
 func init --worker-runtime custom --docker
