@@ -52,9 +52,11 @@
 
 ## Function App commands
 
+```
 func init --worker-runtime custom --docker
-func new --name flogo-hello-world-func --template "HTTP trigger"
 
+func new --name flogo-hello-world-func --template "HTTP trigger"
+```
 
 
 ### function.json
@@ -154,6 +156,7 @@ COPY . "/home/site/wwwroot"
 
 ### Function App Deployment
 
+```
 az login
 
 az functionapp create --resource-group <<your-resource-group>> --os-type Linux --consumption-plan-location <<region>> --runtime custom --functions-version 4 --name <<your-azure-function-app-name>> --storage-account <<your-storage-account>>
@@ -163,3 +166,4 @@ zip -r app.zip  . -x "./.devcontainer/*"
 
 
 az functionapp deployment source config-zip --resource-group  <<your-resource-group>> --name<<your-azure-function-app-name>> --src app.zip
+```
