@@ -1,12 +1,21 @@
 # flogo-azure-func
 
+This repository is a demonstration on how to:
 
-1. Create .devcontainer directory
-2. Create devcontainer.json file inside .devcontainer directory
-3. Create .devcontainer/extensions directory
+1. Configure a visual studio code workspace for Dev Container use with TIBCO Flogo Plug-in.
+2. Configure project for Azure Function.
+3. Build and deploy Flogo application on Azure as a Function Application.
 
 
-## devcontainer.json
+## Step 1 - Configure VSC workspace for Dev Container use with TIBCO Flogo Plugin
+
+Create .devcontainer directory
+Create devcontainer.json file inside .devcontainer directory
+Create .devcontainer/extensions directory
+Copy flogo vsc extension 
+Edit the devcontainer.json using the following configuration
+
+### devcontainer.json
 
 ```
 {
@@ -40,25 +49,28 @@
 }
 ```
 
-4. Copy flogo vsc extension 
-5. CTRL+SHIFT+P -> DevContainers: Redeploy
+Use CTRL+SHIFT+P and DevContainers: Redeploy to launch into your Dev Container.
+
+
 
 ## Build Flogo Application
 
+Build your TIBCO Flogo application.
+Make sure your local runtime is linux x86_64
 
-!!!!DO NOT FORGET TO SAVE BEFORE RUN!!!!
 
 
+## Step 2 - Configure project for Azure Function. 
 
-## Function App commands
+Run the following in your VSC terminal...
 
 ```
 func init --worker-runtime custom --docker
-
 func new --name flogo-hello-world-func --template "HTTP trigger"
 ```
 
-
+2. Modify the following files...
+   
 ### function.json
 
 ```
@@ -121,14 +133,6 @@ func new --name flogo-hello-world-func --template "HTTP trigger"
 }
 ```
 
-### start.sh
-
-```
-#!/usr/bin/env sh
-echo "Starting function..."
-PORT=${FUNCTIONS_CUSTOMHANDLER_PORT} ./flogo-hello-world
-```
-
 ### Dockerfile
 
 ```
@@ -154,16 +158,26 @@ COPY . "/home/site/wwwroot"
 }
 ```
 
-### Function App Deployment
+
+### start.sh
+
+Create the start.sh file making sure to chmod +x
+
+```
+#!/usr/bin/env sh
+echo "Starting function..."
+PORT=${FUNCTIONS_CUSTOMHANDLER_PORT} ./flogo-hello-world
+```
+
+
+## Step 3 - Build and deploy Flogo application on Azure as a Function Application.
+
+Run the following in your VSC terminal...
+
 
 ```
 az login
-
 az functionapp create --resource-group <<your-resource-group>> --os-type Linux --consumption-plan-location <<region>> --runtime custom --functions-version 4 --name <<your-azure-function-app-name>> --storage-account <<your-storage-account>>
-
-
 zip -r app.zip  . -x "./.devcontainer/*"
-
-
 az functionapp deployment source config-zip --resource-group  <<your-resource-group>> --name<<your-azure-function-app-name>> --src app.zip
 ```
