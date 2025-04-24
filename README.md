@@ -6,9 +6,9 @@
 3. Create .devcontainer/extensions directory
 
 
--- devcontainer.json
+## devcontainer.json
 
-
+```
 {
     "name": "FlogoDevContainerAzFn",
 
@@ -38,26 +38,28 @@
     }
 
 }
+```
 
 4. Copy flogo vsc extension 
 5. CTRL+SHIFT+P -> DevContainers: Redeploy
 
-#### Build Flogo Application
+## Build Flogo Application
 
 
 !!!!DO NOT FORGET TO SAVE BEFORE RUN!!!!
 
 
 
-### Function App commands
+## Function App commands
 
 func init --worker-runtime custom --docker
 func new --name flogo-hello-world-func --template "HTTP trigger"
 
 
 
---- function.json
+### function.json
 
+```
 {
   "bindings": [
     {
@@ -75,9 +77,11 @@ func new --name flogo-hello-world-func --template "HTTP trigger"
     }
   ]
 }
+```
 
---- host.json
+### host.json
 
+```
 {
   "version": "2.0",
   "logging": {
@@ -113,16 +117,19 @@ func new --name flogo-hello-world-func --template "HTTP trigger"
     }
   }
 }
+```
 
---- start.sh
+### start.sh
 
+```
 #!/usr/bin/env sh
 echo "Starting function..."
 PORT=${FUNCTIONS_CUSTOMHANDLER_PORT} ./flogo-hello-world
+```
 
+### Dockerfile
 
---- Dockerfile
-
+```
 # FROM mcr.microsoft.com/azure-functions/dotnet:4-appservice 
 FROM mcr.microsoft.com/azure-functions/dotnet:4
 ENV AzureWebJobsScriptRoot=/home/site/wwwroot \
@@ -130,9 +137,11 @@ ENV AzureWebJobsScriptRoot=/home/site/wwwroot \
     FLOGO_LOG_CONSOLE_STREAM=stdout
 
 COPY . "/home/site/wwwroot"
+```
 
---- local.settings.json
+### local.settings.json
 
+```
 {
   "IsEncrypted": false,
   "Values": {
@@ -141,7 +150,7 @@ COPY . "/home/site/wwwroot"
     "FLOGO_LOG_CONSOLE_STREAM": "stdout"
   }
 }
-
+```
 
 ### Function App Deployment
 
