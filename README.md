@@ -64,7 +64,7 @@ Make sure your local runtime is linux x86_64
 
 Run the following in your VSC terminal...
 
-> **Note** Remember to replace <<<<your-azure-function-name>>
+> **Note** Remember to replace <your-azure-function-name> value.
 
 ```
 func init --worker-runtime custom --docker
@@ -176,7 +176,7 @@ PORT=${FUNCTIONS_CUSTOMHANDLER_PORT} ./flogo-hello-world
 
 Run the following in your VSC terminal...
 
-> **Note** Remember to replace <<your-azure-function-app-name>>,  <<region>>, <<your-resource-group>>, and <<your-storage-account>>
+> **Note** Remember to replace <your-azure-function-app-name>,  <region>, <your-resource-group>, and <your-storage-account> values.
 
 
 ```
